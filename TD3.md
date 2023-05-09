@@ -9,7 +9,7 @@ Tracer les fonctions mathématiques suivantes à l'aide des méthodes `imshow` e
 $$ f(x,y) = \sin{\sqrt{x^2+y^2}} $$
 pour $x\in [-5,5]$ et $ y\in [-5,5]$, puis $x\in [-50,50]$ et $ y\in [-50,50]$.
 
-```{code-cell} ipython3
+```python
 #Importation des modules
 
 import numpy as np
@@ -80,11 +80,11 @@ plt.title('Fonction f en représentation 3D')
 plt.show()
 ```
 
-```{code-cell} ipython3
+```python
 L'image ressemble beaucoup à une oeuvre décorative, cela est plaisant. La seconde car ayant une plus grande résolution.
 ```
 
-```{code-cell} ipython3
+```python
 
 #LA REPONSE ICI
 ```
@@ -98,9 +98,11 @@ LA REPONSE ICI (double-clique pour editer la cellule)
 
 
 - Tracez la fonction suivante avec de nouveau `imshow` et `plot_surface`:
+
+
 $$ f(x,y) = x^2 - y^2 \text{ pour } x\in [-1,1] \text{ et } y\in [-1,1]$$
 
-```{code-cell} ipython3
+```python
 
 #Définition de la fonction f
 
@@ -139,7 +141,7 @@ plt.title('Fonction f en représentation 3D')
 plt.show()
 ```
 
-```{code-cell} ipython3
+```python
 
 Elle est lisse et on peut visualiser un point selle de la fonction f (0,0)? .
 ```
@@ -177,7 +179,7 @@ en faisant attention à la normalisation de la dérivée.
 
 **Bon à savoir** : pour une fonction 2D, `np.gradient` renvoie la dérivée selon `y` en premier, puis celle selon `x`, car le gradient est d'abord calculé selon les lignes (valeurs de `y`) puis selon les colonnes (valeurs de `x`).
 
-```{code-cell} ipython3
+```python
 
 # Importation du module sympy qui sert au calcul différentiel
 
@@ -195,7 +197,7 @@ def grad(f,x,y):
 
 - Tester cette fonction sur $f(x,y)=x^2-y^2$ pour $x\in [-1,1] \text{ et } y\in [-1,1]$. Tracer le résultat.
 
-```{code-cell} ipython3
+```python
 
 #Tracé du gradient
 
@@ -220,7 +222,7 @@ LA REPONSE ICI (double-clique pour editer la cellule)
 
  - Existe-il un point où les dérivées partielles s'annulent toutes les deux ? Pour cela tracer la norme du gradient de $f$, puis à l'aide de la méthode `np.where` rechercher les points $(x,y)$ tels que la norme du gradient est inférieur à un seuil proche de zéro.
 
-```{code-cell} ipython3
+```python
 
 # De manière symbolique nous pouvons determiner l'expression des der. part. de f
 
@@ -254,7 +256,7 @@ $$\displaystyle{\nabla^2\ f(x,y) = \begin{pmatrix}
 
 Créer une fonction `hessien(f,x,y)` qui a les mêmes entrées que la fonction `grad` mais renvoie la matrice hessienne.
 
-```{code-cell} ipython3
+```python
 
 #LA REPONSE ICI
 ```
@@ -262,14 +264,14 @@ Créer une fonction `hessien(f,x,y)` qui a les mêmes entrées que la fonction `
 
 - Comparer le résultat donné par la fonction `hessien` à un calcul à la main pour la fonction $f(x,y)$. Que constatez-vous ?
 
-```{code-cell} ipython3
+```python
 #LA REPONSE ICI
 ```
 
 
 - Le format du tableau en sortie de la fonction `hessien` n'est pas pratique à manipuler car c'est une matrice $2\times 2$ contenant des tableaux 1D (s'en convaincre avec la méthode `.shape`). Transposer le résultat pour avoir un tableau à deux entrées contenant des matrices $2\times 2$.
 
-```{code-cell} ipython3
+```python
 
 #LA REPONSE ICI
 ```
@@ -277,7 +279,7 @@ Créer une fonction `hessien(f,x,y)` qui a les mêmes entrées que la fonction `
 
 - La fonction $f(x,y)$ possède un point selle s'il existe un point $(x,y)$ pour lequel le gradient est nul et le hessien possède un déterminant négatif. Est-ce le cas ?
 
-```{code-cell} ipython3
+```python
 
 #LA REPONSE ICI
 ```
@@ -297,7 +299,7 @@ Le nombre de lignes ($i=0,1...,N_x$) et de colonnes ($j=0,1...,N_y$) dans ce tab
 
 - Ouvrir puis afficher l'image enregistrée par la caméra. Quelles sont les dimensions (en pixels) de l'image ?
 
-```{code-cell} ipython3
+```python
 
 import matplotlib.image as img
 import matplotlib.pyplot as plt
@@ -307,8 +309,6 @@ image1=img.imread(fname1,format='tif')
 
 # La dimension de l'image est de (50,40)
 ```
-
-+++ {"deletable": false, "editable": false, "nbgrader": {"cell_type": "markdown", "checksum": "a45cc5b1dd8dcf60dbe8a0f3e284eea5", "grade": false, "grade_id": "cell-8f66c96237aee0c0", "locked": true, "points": 0, "schema_version": 3, "solution": false, "task": true}}
 
 ### 3.2 Fonction modèle
 Pour extraire automatiquement les positions  horizontale ($x_0$) et verticale ($y_0$) du centre de la tache lumineuse ainsi que ses largeurs horizontale et verticales $w_x$ et $w_y$ on va modéliser la tache lumineuse par une fonction gaussienne à deux dimensions. 
@@ -325,7 +325,7 @@ $$I=f(x,y)=A_0 \mathrm{exp}\left(-\frac{(x-x_0)^2}{w_x^2}-\frac{(y-y_0)^2}{w_y^2
 
 On pourra s'inspirer de l'exemple ci-dessous (quelles sont les dimensions de X, Y et Z, et que représentent-ils ?).
 
-```{code-cell} ipython3
+```python
 
 import scipy.optimize as opt
 import numpy as np
@@ -346,7 +346,7 @@ plt.colorbar()
 plt.show()
 ```
 
-```{code-cell} ipython3
+```python
 
 # Définition de la fonction gaussienne
 def gaussienne(x,y,A,x_0,y_0,w_x,w_y,e_0):
@@ -375,7 +375,7 @@ Afin de tester notre procédure d'ajustement moindre carré, nous allons créer,
 - Ecrire une fonction `gaussiennebruitee`, qui est la somme de la fonction `gaussienne` et d'un nombre aléatoire tiré au sort pour chaque pixel selon une loi gaussienne d'écart type `sigma_noise`. On choisira  `sigma_noise` de façon à ce que l'image apparaisse visiblement bruitée mais en gardant la tache bien discernable à l'oeil.
 - Afficher le résultat obtenu.
 
-```{code-cell} ipython3
+```python
 
 def gaussiennebruitee(x,y,A,x_0,y_0,w_x,w_y,e_0):
     return gaussienne(x,y,A,x_0,y_0,w_x,w_y,e_0) + [[np.random.random() for i in range(51)] for j in range(51)]
@@ -402,7 +402,7 @@ Effectuer un ajustement de l'image bruitée par une fonction `gaussienne`. Pour 
 - Retrouve t-on les paramètres $x_0$, $y_0$, $w_x$ et $w_y$ avec lesquels on avait calculé l'image de test ? 
 A partir de quel ecart-type sur le bruit a-t-on un écart significatif ?
 
-```{code-cell} ipython3
+```python
 
 #Importation du module scipy.optimize qui contient curve fit
 
@@ -435,7 +435,7 @@ Effectuer un ajustement de l'image expérimentale par la fonction `gaussienne`.
 - Afficher les valeurs de  $x_0$, $y_0$, $w_x$ et $w_y$ obtenues grâce à cet ajustement (ne pas oublier l'incertitude). 
 - Afficher en rouge sur l'image les points de coordonnées $(x0,y0)$ ainsi imprimer les coordonnées du point acec ses incertitudes $(x0 \pm dx0,y0 \pm dy0)$. On utilisera la fonction `scatter(vx,vy,color='r',s=50)` qui permet d'afficher les points de coordonnées `(vx[i],vy[i])`.
 
-```{code-cell} ipython3
+```python
 
 j = image1
 
